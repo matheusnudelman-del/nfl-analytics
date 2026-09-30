@@ -42,7 +42,7 @@ const hasScore = (value: string) => value !== "" && value !== "NA";
 
 export async function getTeams(): Promise<Team[]> {
   // Download all three files at the same time.
-  const [teamRows, gameRows, statRows] = await Promise.all([
+  const [teamRows, gameRows] = await Promise.all([
     loadCsv(TEAMS_URL),
     loadCsv(GAMES_URL),
   ]);
