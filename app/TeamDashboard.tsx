@@ -129,7 +129,12 @@ export default function TeamDashboard({ teams }: { teams: Team[] }) {
   />
 ))}
       </div>
-      
+            <p className="mt-12 text-sm text-slate-500">
+        Data from{" "}
+        <a href="https://nflverse.com" className="underline">
+          nflverse
+        </a>
+      </p>
     </main>
   );
 }
