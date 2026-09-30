@@ -24,13 +24,7 @@ export type Team = {
   teamColour: string;
 };
 
-function brightness(hex: string): number {
-  const c = hex.replace("#", "");
-  const r = parseInt(c.slice(0, 2), 16);
-  const g = parseInt(c.slice(2, 4), 16);
-  const b = parseInt(c.slice(4, 6), 16);
-  return 0.299 * r + 0.587 * g + 0.114 * b;
-}
+// Downloads a CSV and turns it into rows, e.g. { team_name: "Seattle Seahawks", ... }
 async function loadCsv(url: string): Promise<Record<string, string>[]> {
   const response = await fetch(url, { next: { revalidate: 86400 } });
   if (!response.ok) {
@@ -48,7 +42,7 @@ const hasScore = (value: string) => value !== "" && value !== "NA";
 
 export async function getTeams(): Promise<Team[]> {
   // Download all three files at the same time.
-  const [teamRows, gameRows] = await Promise.all([
+  const [teamRows, gameRows, statRows] = await Promise.all([
     loadCsv(TEAMS_URL),
     loadCsv(GAMES_URL),
   ]);
@@ -110,8 +104,7 @@ export async function getTeams(): Promise<Team[]> {
         ties: r.ties,
         pointsPerGame: Number((r.points / r.games).toFixed(1)),
         logo: t.team_logo_espn,
-        teamColour:
-          brightness(t.team_color) > 80 ? t.team_color : t.team_color2,
+        teamColour: t.team_color,
       };
     });
 }
