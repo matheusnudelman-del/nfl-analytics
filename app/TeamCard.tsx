@@ -8,7 +8,6 @@ type TeamCardProps = {
   ties: number;
   pointsPerGame: number;
   logo: string;
-  teamColour: string;
 };
 
 export default function TeamCard({
@@ -21,19 +20,14 @@ export default function TeamCard({
   ties,
   pointsPerGame,
   logo,
-  teamColour,
+
 }: TeamCardProps) {
   return (
-        <div className="bg-slate-900 p-6 rounded-xl">
+     <div className="bg-slate-900 p-6 rounded-xl">
       <div className="flex justify-between items-start mb-4">
-      <h2 className="text-xl font-semibold">
-         <span className="text-white">
-           #{ranking}
-          </span>{" "}
-          <span style={{ color: teamColour }}>
-            {teamName}
-          </span>
-      </h2>
+         <h2 className="text-xl font-semibold">
+          <span className="text-slate-400">#{ranking}</span> {teamName}
+        </h2>
         
         <img
          src={logo}
@@ -41,10 +35,10 @@ export default function TeamCard({
          className="h-10 w-14 mb-4"
         />
       </div>
-      <p className="mt-4 text-green-400 text-2xl">
+       <p className="mt-4 text-green-700 text-2xl">
         Off EPA/Play: {epa.toFixed(2)}
       </p>
-      <p className="mt-1 text-sky-400 text-2xl">
+      <p className="mt-1 text-sky-700 text-2xl">
         Def EPA/Play: {defEpa.toFixed(2)}
       </p>
       

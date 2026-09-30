@@ -125,7 +125,6 @@ export default function TeamDashboard({ teams }: { teams: Team[] }) {
     ties={team.ties}
     pointsPerGame={team.pointsPerGame}
     logo={team.logo}
-    teamColour={team.teamColour}
   />
 ))}
       </div>
