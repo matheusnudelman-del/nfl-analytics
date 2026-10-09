@@ -3,6 +3,7 @@
 import { useState } from "react";
 import TeamCard from "./TeamCard";
 import type { Team } from "./lib/getTeams";
+import Link from "next/link"; 
 
 export default function TeamDashboard({ teams }: { teams: Team[] }) {
   const [sortOption, setSortOption] = useState("epa-desc");
@@ -114,6 +115,11 @@ export default function TeamDashboard({ teams }: { teams: Team[] }) {
          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
 
         {filteredTeams.map((team) => (
+    <Link
+    key={team.teamName}
+    href={`/team/${team.abbr}`}
+    className="block transition hover:scale-[1.02]"
+  >
   <TeamCard
     key={team.teamName}
     ranking={team.ranking}
@@ -126,6 +132,7 @@ export default function TeamDashboard({ teams }: { teams: Team[] }) {
     pointsPerGame={team.pointsPerGame}
     logo={team.logo}
   />
+  </Link>
 ))}
       </div>
             <p className="mt-12 text-sm text-slate-500">

@@ -108,3 +108,20 @@ export async function getTeams(): Promise<Team[]> {
       };
     });
 }
+// The detailed stats for one side of the ball.
+export type SideStats = {
+  epa: number;
+  passEpa: number;
+  rushEpa: number;
+  successRate: number;
+  passSuccessRate: number;
+  rushSuccessRate: number;
+  thirdDownRate: number;
+  passRate: number;
+};
+
+// Looks up one team's detailed offensive and defensive stats.
+export function getTeamDetails(abbr: string) {
+  const details = epaData.details as Record<string, { offense: SideStats; defense: SideStats }>;
+  return details[abbr];
+}
